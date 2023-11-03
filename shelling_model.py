@@ -11,7 +11,7 @@ NUMBER_OF_MIGRATIONS = 100
 CELL_MIGRATIONS_PER_SNAPSHOT = 5
 PAUSE_DURATION_BETWEEN_SNAPSHOTS = 0.5
 CELLS_AROUND_FOR_HAPPINESS = 4
-CELL_RADIUS = 3
+CELL_RADIUS = 2.5
 
 
 class Cell:
@@ -85,6 +85,7 @@ class Grid:
             unhappy_cell.y, empty_cell.y = empty_cell.y, unhappy_cell.y
     
     def cicle(self, migrations_num):
+        update_plot(self.red_cells, self.blue_cells)
         for migration_num in range(migrations_num):
             self.identify_neighbors()
             self.identify_unhappy_cells()
