@@ -55,21 +55,19 @@ class Grid:
     def identify_neighbors(self):
         for cells_dict in self.color_cells_dicts:
             for cell in cells_dict.values():
-                if cell.type != 'empty':
-                    cell.neighbors = []
-                    for y in range(cell.y - 1, cell.y + 2):
-                        for x in range(cell.x - 1, cell.x + 2):
-                            position = (x, y)
-                            if position in cells_dict and cells_dict[position] != cell:
-                                cell.neighbors.append(cells_dict[position])
+                cell.neighbors = []
+                for y in range(cell.y - 1, cell.y + 2):
+                    for x in range(cell.x - 1, cell.x + 2):
+                        position = (x, y)
+                        if position in cells_dict and cells_dict[position] != cell:
+                            cell.neighbors.append(cells_dict[position])
 
     def identify_unhappy_cells(self):
-        unhappy_cells = []
+        self.unhappy_cells = []
         for cells_dict in self.color_cells_dicts:
             for cell in cells_dict.values():
                 if not cell.is_happy():
-                    unhappy_cells.append(cell)
-        self.unhappy_cells = unhappy_cells
+                    self.unhappy_cells.append(cell)
         
     def cells_migrate(self):
         empty_cells = list(self.empty_cells.values())
